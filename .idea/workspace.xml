@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81d2394d-b348-492c-afba-f58af4f0c731" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Scarb.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Scarb.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Scarb.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Scarb.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dojo_dev.toml" beforeDir="false" afterPath="$PROJECT_DIR$/dojo_dev.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dojo_release.toml" beforeDir="false" afterPath="$PROJECT_DIR$/dojo_release.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manifest_dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest_dev.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/systems/actions.cairo" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/actions.cairo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tests/test_world.cairo" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/test_world.cairo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/slot_torii_config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/slot_torii_config.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +80,8 @@
       <workItem from="1751390154220" duration="9812000" />
       <workItem from="1751468848667" duration="15832000" />
       <workItem from="1751559657963" duration="5713000" />
-      <workItem from="1751913693575" duration="418000" />
+      <workItem from="1751913693575" duration="7250000" />
+      <workItem from="1751926762295" duration="105000" />
     </task>
     <servers />
   </component>
