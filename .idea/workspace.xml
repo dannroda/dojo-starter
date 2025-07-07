@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="81d2394d-b348-492c-afba-f58af4f0c731" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/Scarb.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Scarb.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scarb.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Scarb.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dojo_dev.toml" beforeDir="false" afterPath="$PROJECT_DIR$/dojo_dev.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dojo_release.toml" beforeDir="false" afterPath="$PROJECT_DIR$/dojo_release.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest_dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest_dev.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/systems/actions.cairo" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/actions.cairo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/test_world.cairo" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/test_world.cairo" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="ZiBWOlLe" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2xnoQA3B8J0zWAIb7FoAs36sGCR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.rust.reset.selective.auto.import&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/hazel/Proyectos/Godot/GDE/dojo-starter&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="/usr/bin" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="81d2394d-b348-492c-afba-f58af4f0c731" name="Changes" comment="" />
+      <created>1748583180408</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1748583180408</updated>
+      <workItem from="1748583182228" duration="690000" />
+      <workItem from="1748584344764" duration="314000" />
+      <workItem from="1748624939815" duration="10089000" />
+      <workItem from="1748880075757" duration="15042000" />
+      <workItem from="1749050280674" duration="2767000" />
+      <workItem from="1749056360065" duration="7600000" />
+      <workItem from="1749141628834" duration="13000" />
+      <workItem from="1749164862190" duration="2000000" />
+      <workItem from="1749216936161" duration="4000" />
+      <workItem from="1749498072763" duration="13784000" />
+      <workItem from="1749592524931" duration="760000" />
+      <workItem from="1749616051719" duration="4278000" />
+      <workItem from="1750634359966" duration="1480000" />
+      <workItem from="1750692784196" duration="4000" />
+      <workItem from="1750709508607" duration="898000" />
+      <workItem from="1750878920786" duration="57000" />
+      <workItem from="1751390154220" duration="9812000" />
+      <workItem from="1751468848667" duration="15832000" />
+      <workItem from="1751559657963" duration="5713000" />
+      <workItem from="1751913693575" duration="418000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
