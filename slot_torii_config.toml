@@ -2,23 +2,23 @@ world_address="0x0393f8a2d0d47e384c3c61eedc08d2873f5d608f8da7ffb013e5d5aa327ac8f
 rpc="https://api.cartridge.gg/x/godot-demo-rookie/katana"
 [runner]
 explorer= false
-check_contracts= true
+check_contracts= false
 [indexing]
 pending= true
 polling_interval= 500
 max_concurrent_tasks= 100
 transactions= false
 contracts=[]
-namespaces=["dojo_starter"]
+namespaces=[]
 world_block= 0
-controllers= true
+controllers= false
 strict_model_reader= false
 [events]
-raw= true
+raw= false
 [erc]
 max_metadata_tasks= 10
 [sql]
-all_model_indices= false
+all_model_indices= true
 historical= []
 page_size= 32768
 cache_size= -500000
