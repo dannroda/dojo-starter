@@ -1,6 +1,5 @@
 use dojo_starter::models::{Direction, Position, PositionSigned, Vec2, Vec2Signed, U32IntoI32};
 use starknet::{ClassHash, EthAddress, ContractAddress};
-use integer::{i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, u256};
 
 // define the interface
 #[starknet::interface]
@@ -54,7 +53,6 @@ pub mod actions {
     use dojo_starter::models::{Moves, Vec2, Vec2Signed};
     use starknet::{ContractAddress, get_caller_address, ClassHash, EthAddress};
     use super::{Direction, IActions, Position, PositionSigned, next_position, next_position_signed};
-    use integer::{i8, i16, i32, i64, i128, u8, u16, u32, u64, u128, u256};
 
     #[derive(Copy, Drop, Serde)]
     #[dojo::event]
