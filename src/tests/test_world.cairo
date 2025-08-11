@@ -8,13 +8,14 @@ mod tests {
     };
 
     use dojo_starter::systems::actions::{actions, IActionsDispatcher, IActionsDispatcherTrait};
-    use dojo_starter::models::{Position, m_Position, Moves, m_Moves, Direction, Vec2};
+    use dojo_starter::models::{Position, m_Position, PositionSigned, m_PositionSigned, Moves, m_Moves, Direction, Vec2, Vec2Signed};
 
     fn namespace_def() -> NamespaceDef {
         let ndef = NamespaceDef {
             namespace: "dojo_starter",
             resources: [
                 TestResource::Model(m_Position::TEST_CLASS_HASH),
+                TestResource::Model(m_PositionSigned::TEST_CLASS_HASH),
                 TestResource::Model(m_Moves::TEST_CLASS_HASH),
                 TestResource::Event(actions::e_Moved::TEST_CLASS_HASH),
                 TestResource::Contract(actions::TEST_CLASS_HASH),
@@ -212,40 +213,29 @@ mod tests {
         );
 
         // Move to position (25, 30)
-        let target_position = Vec2 { x: 25, y: 30 };
+        let target_position = Vec2Signed { x: 25, y: 30 };
         actions_system.move_to(target_position);
 
         // Check that the player's position has been updated
-        let new_position: Position = world.read_model(caller);
+        let new_position: PositionSigned = world.read_model(caller);
         assert(new_position.vec.x == target_position.x, 'position x is wrong');
         assert(new_position.vec.y == target_position.y, 'position y is wrong');
 
         // Check that the player's moves count has been decremented
         let moves: Moves = world.read_model(caller);
-        assert(moves.remaining == initial_moves.remaining - 1, 'moves is wrong');
-
-        // Check that the player's last direction has been updated
-        // Since we moved from (10, 10) to (25, 30), the direction should be Right
-        // (since x increased and we prioritize x over y in the direction determination)
-        let right_dir_felt: felt252 = Direction::Right(()).into();
-        assert(moves.last_direction.unwrap().into() == right_dir_felt, 'last direction is wrong');
+        assert(moves.remaining == initial_moves.remaining, 'moves should not change');
 
         // Test moving to another position
-        let target_position2 = Vec2 { x: 15, y: 40 };
+        let target_position2 = Vec2Signed { x: 15, y: 40 };
         actions_system.move_to(target_position2);
 
         // Check that the player's position has been updated
-        let final_position: Position = world.read_model(caller);
+        let final_position: PositionSigned = world.read_model(caller);
         assert(final_position.vec.x == target_position2.x, 'position x is wrong');
         assert(final_position.vec.y == target_position2.y, 'position y is wrong');
 
         // Check that the player's moves count has been decremented again
         let final_moves: Moves = world.read_model(caller);
-        assert(final_moves.remaining == moves.remaining - 1, 'moves is wrong');
-
-        // Since we moved from (25, 30) to (15, 40), the direction should be Left
-        // (since x decreased and we prioritize x over y in the direction determination)
-        let left_dir_felt: felt252 = Direction::Left(()).into();
-        assert(final_moves.last_direction.unwrap().into() == left_dir_felt, 'last direction is wrong');
+        assert(final_moves.remaining == moves.remaining, 'moves should not change');
     }
 }

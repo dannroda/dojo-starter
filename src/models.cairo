@@ -50,6 +50,20 @@ pub struct Vec2 {
     pub y: u32,
 }
 
+#[derive(Copy, Drop, Serde, IntrospectPacked, Debug)]
+pub struct Vec2Signed {
+    pub x: i32,
+    pub y: i32,
+}
+
+#[derive(Copy, Drop, Serde, Debug)]
+#[dojo::model]
+pub struct PositionSigned {
+    #[key]
+    pub player: ContractAddress,
+    pub vec: Vec2Signed,
+}
+
 
 impl DirectionIntoFelt252 of Into<Direction, felt252> {
     fn into(self: Direction) -> felt252 {
@@ -71,6 +85,12 @@ impl OptionDirectionIntoFelt252 of Into<Option<Direction>, felt252> {
     }
 }
 
+pub impl U32IntoI32 of Into<u32, i32> {
+    fn into(self: u32) -> i32 {
+        self.try_into().unwrap()
+    }
+}
+
 #[generate_trait]
 impl Vec2Impl of Vec2Trait {
     fn is_zero(self: Vec2) -> bool {
@@ -85,9 +105,23 @@ impl Vec2Impl of Vec2Trait {
     }
 }
 
+#[generate_trait]
+impl Vec2SignedImpl of Vec2SignedTrait {
+    fn is_zero(self: Vec2Signed) -> bool {
+        if self.x == 0 && self.y == 0 {
+            return true;
+        }
+        false
+    }
+
+    fn is_equal(self: Vec2Signed, b: Vec2Signed) -> bool {
+        self.x == b.x && self.y == b.y
+    }
+}
+
 #[cfg(test)]
 mod tests {
-    use super::{Vec2, Vec2Trait};
+    use super::{Vec2, Vec2Trait, Vec2Signed, Vec2SignedTrait};
 
     #[test]
     fn test_vec_is_zero() {
@@ -98,5 +132,16 @@ mod tests {
     fn test_vec_is_equal() {
         let position = Vec2 { x: 420, y: 0 };
         assert(position.is_equal(Vec2 { x: 420, y: 0 }), 'not equal');
+    }
+
+    #[test]
+    fn test_vec_signed_is_zero() {
+        assert(Vec2SignedTrait::is_zero(Vec2Signed { x: 0, y: 0 }), 'not zero');
+    }
+
+    #[test]
+    fn test_vec_signed_is_equal() {
+        let position = Vec2Signed { x: -420, y: 0 };
+        assert(position.is_equal(Vec2Signed { x: -420, y: 0 }), 'not equal');
     }
 }

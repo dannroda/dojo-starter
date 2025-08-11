@@ -1,7 +1,7 @@
 {
   "world": {
-    "class_hash": "0x7746f30d2b8494780387ed469797ecb5c62c7b6f49f4939a5e60e0f7ae5f99e",
-    "address": "0x393f8a2d0d47e384c3c61eedc08d2873f5d608f8da7ffb013e5d5aa327ac8f2",
+    "class_hash": "0x685ed02eefa98fe7e208aa295042e9bbad8029b0d3d6f0ba2b32546efe0a1f9",
+    "address": "0x58565b92f55fb07b53940b4b7eea3df2ac2878210e5c7a4c68201e8c511a546",
     "seed": "dojo_starter",
     "name": "Dojo starter",
     "entrypoints": [
@@ -1328,8 +1328,8 @@
   },
   "contracts": [
     {
-      "address": "0xd91dee447ef681dbf6ea307c48bf000b1262ce59fc3d1652b44273d74bf18e",
-      "class_hash": "0x70b81767d16b8253e2082e91da7d9f19855d4941aa8347a30c70c0b8f9d5088",
+      "address": "0x49f9b281bb08aea6d745f28cf31dd529348b04a21d9a5ae1ef19197665c02da",
+      "class_hash": "0x308c0d298f1860e8301465a2268e7e71f23854a53cd6cf0d27d184d4008bcfe",
       "abi": [
         {
           "type": "impl",
@@ -1410,15 +1410,15 @@
         },
         {
           "type": "struct",
-          "name": "dojo_starter::models::Vec2",
+          "name": "dojo_starter::models::Vec2Signed",
           "members": [
             {
               "name": "x",
-              "type": "core::integer::u32"
+              "type": "core::integer::i32"
             },
             {
               "name": "y",
-              "type": "core::integer::u32"
+              "type": "core::integer::i32"
             }
           ]
         },
@@ -1462,7 +1462,7 @@
               "inputs": [
                 {
                   "name": "vec",
-                  "type": "dojo_starter::models::Vec2"
+                  "type": "dojo_starter::models::Vec2Signed"
                 }
               ],
               "outputs": [],
@@ -1622,6 +1622,12 @@
       "class_hash": "0x4518971c1abf10a6c1c40f8f72fc34816dee4752d66f0f2b9d29a62f4fb3310",
       "tag": "dojo_starter-PositionCount",
       "selector": "0x44e8e8c3aea54e97e01563cacc08abb4a8ce8c468cd4d3a332bca12bfc2290d"
+    },
+    {
+      "members": [],
+      "class_hash": "0x11f26307bc45d2cc5cfd294c054fac2189b7b360bb9a56d24cb3abe9a2f2035",
+      "tag": "dojo_starter-PositionSigned",
+      "selector": "0x7cdf68613480c2e67c73cf8c5bbdce8c003130b162f3e7012812fb83aed6265"
     }
   ],
   "events": [
