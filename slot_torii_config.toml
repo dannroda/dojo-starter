@@ -1,4 +1,4 @@
-world_address="0x0393f8a2d0d47e384c3c61eedc08d2873f5d608f8da7ffb013e5d5aa327ac8f2"
+world_address="0x73c2b317136214562b608523812f369a05efe67257842a17c4985ce6d390be7"
 rpc="https://api.cartridge.gg/x/godot-demo-rookie/katana"
 [runner]
 explorer= false
@@ -7,7 +7,7 @@ check_contracts= true
 pending= true
 polling_interval= 500
 max_concurrent_tasks= 100
-transactions= false
+transactions= true
 contracts=[]
 namespaces=[]
 world_block= 0

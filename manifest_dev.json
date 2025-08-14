@@ -1,7 +1,7 @@
 {
   "world": {
-    "class_hash": "0x685ed02eefa98fe7e208aa295042e9bbad8029b0d3d6f0ba2b32546efe0a1f9",
-    "address": "0x58565b92f55fb07b53940b4b7eea3df2ac2878210e5c7a4c68201e8c511a546",
+    "class_hash": "0x13d92333361bb7049c1232c0a5404e2c19082ededc3a73d75cb33fa952adec7",
+    "address": "0x73c2b317136214562b608523812f369a05efe67257842a17c4985ce6d390be7",
     "seed": "dojo_starter",
     "name": "Dojo starter",
     "entrypoints": [
@@ -1328,8 +1328,8 @@
   },
   "contracts": [
     {
-      "address": "0x49f9b281bb08aea6d745f28cf31dd529348b04a21d9a5ae1ef19197665c02da",
-      "class_hash": "0x308c0d298f1860e8301465a2268e7e71f23854a53cd6cf0d27d184d4008bcfe",
+      "address": "0x38c3535090be3807d95354db3ae8dc0ceb19a0240739a3338cbc0d6c8ee47b4",
+      "class_hash": "0x6f44c0945b60215c4d1372b0f3d94a6b166cac5616b059378f636578510c8b7",
       "abi": [
         {
           "type": "impl",
@@ -1409,6 +1409,34 @@
           ]
         },
         {
+          "type": "enum",
+          "name": "core::option::Option::<core::integer::u32>",
+          "variants": [
+            {
+              "name": "Some",
+              "type": "core::integer::u32"
+            },
+            {
+              "name": "None",
+              "type": "()"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "dojo_starter::models::Vec2",
+          "members": [
+            {
+              "name": "x",
+              "type": "core::integer::u32"
+            },
+            {
+              "name": "y",
+              "type": "core::integer::u32"
+            }
+          ]
+        },
+        {
           "type": "struct",
           "name": "dojo_starter::models::Vec2Signed",
           "members": [
@@ -1419,6 +1447,44 @@
             {
               "name": "y",
               "type": "core::integer::i32"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "core::integer::u256",
+          "members": [
+            {
+              "name": "low",
+              "type": "core::integer::u128"
+            },
+            {
+              "name": "high",
+              "type": "core::integer::u128"
+            }
+          ]
+        },
+        {
+          "type": "enum",
+          "name": "core::bool",
+          "variants": [
+            {
+              "name": "False",
+              "type": "()"
+            },
+            {
+              "name": "True",
+              "type": "()"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "core::starknet::eth_address::EthAddress",
+          "members": [
+            {
+              "name": "address",
+              "type": "core::felt252"
             }
           ]
         },
@@ -1450,7 +1516,23 @@
                 },
                 {
                   "name": "magnitude",
-                  "type": "core::integer::u32"
+                  "type": "core::option::Option::<core::integer::u32>"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "move_signed",
+              "inputs": [
+                {
+                  "name": "direction",
+                  "type": "dojo_starter::models::Direction"
+                },
+                {
+                  "name": "magnitude",
+                  "type": "core::option::Option::<core::integer::u32>"
                 }
               ],
               "outputs": [],
@@ -1462,7 +1544,283 @@
               "inputs": [
                 {
                   "name": "vec",
+                  "type": "dojo_starter::models::Vec2"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "move_to_signed",
+              "inputs": [
+                {
+                  "name": "vec",
                   "type": "dojo_starter::models::Vec2Signed"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate",
+              "inputs": [
+                {
+                  "name": "val_i8",
+                  "type": "core::integer::i8"
+                },
+                {
+                  "name": "val_i16",
+                  "type": "core::integer::i16"
+                },
+                {
+                  "name": "val_i32",
+                  "type": "core::integer::i32"
+                },
+                {
+                  "name": "val_i64",
+                  "type": "core::integer::i64"
+                },
+                {
+                  "name": "val_i128",
+                  "type": "core::integer::i128"
+                },
+                {
+                  "name": "val_u8",
+                  "type": "core::integer::u8"
+                },
+                {
+                  "name": "val_u16",
+                  "type": "core::integer::u16"
+                },
+                {
+                  "name": "val_u32",
+                  "type": "core::integer::u32"
+                },
+                {
+                  "name": "val_u64",
+                  "type": "core::integer::u64"
+                },
+                {
+                  "name": "val_u128",
+                  "type": "core::integer::u128"
+                },
+                {
+                  "name": "val_u256",
+                  "type": "core::integer::u256"
+                },
+                {
+                  "name": "val_bool",
+                  "type": "core::bool"
+                },
+                {
+                  "name": "val_felt252",
+                  "type": "core::felt252"
+                },
+                {
+                  "name": "val_class_hash",
+                  "type": "core::starknet::class_hash::ClassHash"
+                },
+                {
+                  "name": "val_contract_address",
+                  "type": "core::starknet::contract_address::ContractAddress"
+                },
+                {
+                  "name": "val_eth_address",
+                  "type": "core::starknet::eth_address::EthAddress"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_i8",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::i8"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_i16",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::i16"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_i32",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::i32"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_i64",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::i64"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_i128",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::i128"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_u8",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::u8"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_u16",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::u16"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_u32",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::u32"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_u64",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::u64"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_u128",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::u128"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_u256",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::u256"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_bool",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::bool"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_felt252",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::felt252"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_class_hash",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::starknet::class_hash::ClassHash"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_contract_address",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::starknet::contract_address::ContractAddress"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_eth_address",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::starknet::eth_address::EthAddress"
                 }
               ],
               "outputs": [],
@@ -1592,7 +1950,26 @@
         "reset_spawn",
         "spawn",
         "move",
+        "move_signed",
         "move_to",
+        "move_to_signed",
+        "validate",
+        "validate_i8",
+        "validate_i16",
+        "validate_i32",
+        "validate_i64",
+        "validate_i128",
+        "validate_u8",
+        "validate_u16",
+        "validate_u32",
+        "validate_u64",
+        "validate_u128",
+        "validate_u256",
+        "validate_bool",
+        "validate_felt252",
+        "validate_class_hash",
+        "validate_contract_address",
+        "validate_eth_address",
         "upgrade"
       ]
     }
@@ -1636,6 +2013,108 @@
       "class_hash": "0x657236b2c6c6331273d9a71732b511b7ec26d33c54f415b725d5b2c02aba473",
       "tag": "dojo_starter-Moved",
       "selector": "0x504403e5c02b6442527721fc464d9ea5fc8f1ee600ab5ccd5c0845d36fd45f1"
+    },
+    {
+      "members": [],
+      "class_hash": "0x49b006ebbf3bd2786f74826416ef3db1ad1b22a33be12de5572f31162c2f35c",
+      "tag": "dojo_starter-Validated",
+      "selector": "0x2ed06bcd4059fa2110d9a039a9bd6dafdd759d5a4efe37fb73c5f9da1426f77"
+    },
+    {
+      "members": [],
+      "class_hash": "0x8d0351cb6711428b774ef492194137cdb6488af9545f536dee9d3b9caa03e7",
+      "tag": "dojo_starter-ValidatedBool",
+      "selector": "0x2bf139571b88fb2826e7acf6a3d74c01d29e5c95fa08bfb1bfcb83e54fcbee2"
+    },
+    {
+      "members": [],
+      "class_hash": "0x7251390b29e09729a18ee98ae60246baa5516139131948672ade0e860646473",
+      "tag": "dojo_starter-ValidatedClassHash",
+      "selector": "0x462fd704d6256de6d75cfeb9adf73ad25271b7752503ca8016a08c2ef9c6150"
+    },
+    {
+      "members": [],
+      "class_hash": "0x4b06113ff0102735ed8732419f455d6ca9a6dab2b2533142654e7245dcba75e",
+      "tag": "dojo_starter-ValidatedContractAddress",
+      "selector": "0x9f1868194e9aabdb632eeafd6632aafbfcd8ac5619977defa3879d8e364379"
+    },
+    {
+      "members": [],
+      "class_hash": "0x515e0be2bfd68a984b65832e8417e331d54de5a8156aba9bce616cc3e595f87",
+      "tag": "dojo_starter-ValidatedEthAddress",
+      "selector": "0x14ece259535dda5396be4eb8587d93b1fecc8688c8cc1ac0a60be47d63b038"
+    },
+    {
+      "members": [],
+      "class_hash": "0x56e2ac4cbacaaaa6b71591d979cdaa8c7dddd5826fec9a5884f3c424d95c5ab",
+      "tag": "dojo_starter-ValidatedFelt252",
+      "selector": "0x7a6c6fd423c06bd07b2250d9a7a986f6d3c1752c87b2067352ee273466b135f"
+    },
+    {
+      "members": [],
+      "class_hash": "0x19f8d88f685a2165f16b2fcd283ce41b724b47e8042828c6be141fff98deaf7",
+      "tag": "dojo_starter-ValidatedI128",
+      "selector": "0x7f004556dee206e045ab1caa79710d2f60c412975d0540ecebd01c87441272b"
+    },
+    {
+      "members": [],
+      "class_hash": "0x744d83609e3265710c4973fd83aab8a170fa8e545d7866034e97ec11907bb66",
+      "tag": "dojo_starter-ValidatedI16",
+      "selector": "0x82ac102183fa778b836c7bdbe0ff3805a63552d3e323885febc6d84c8f934a"
+    },
+    {
+      "members": [],
+      "class_hash": "0x51a9534192855256229b8130e22e9dca891f212975a488567227fb52e654493",
+      "tag": "dojo_starter-ValidatedI32",
+      "selector": "0x673caaf83cbb016f33e0bdff8e484932971abd91b26737a11c95ab523fc9a66"
+    },
+    {
+      "members": [],
+      "class_hash": "0x130884bbd3f0e2c5abf57c2fb456cf413f1304d90c66ec0f0cc5a9b798be8b3",
+      "tag": "dojo_starter-ValidatedI64",
+      "selector": "0x67a39b49cdca9e61dc1d8d90c5bcd93a784e9db6e15dcf9cf970d822d7197c7"
+    },
+    {
+      "members": [],
+      "class_hash": "0x5d31b215d49a3d33121193679609f8f48d03d215c9d09e424434562e028f57b",
+      "tag": "dojo_starter-ValidatedI8",
+      "selector": "0x3471b01c35a945bd232c6de1460f04a43cc1a842d2141fca8440e758a56828b"
+    },
+    {
+      "members": [],
+      "class_hash": "0x86b6fd92f1d21a618af4043b21bb149fea77fc2728a7711c75821ca95aa92b",
+      "tag": "dojo_starter-ValidatedU128",
+      "selector": "0x37ef36556a9b3ce75c08aa2242781b74055111a8df36c00bf68b352dba9b58f"
+    },
+    {
+      "members": [],
+      "class_hash": "0x6fd78ec990d89ff6f7264ee3832abbc4718a6f2683e1b2dd5ff100e07aa406f",
+      "tag": "dojo_starter-ValidatedU16",
+      "selector": "0x3b961d62f8f714225164eafd16d068dcef52d5a351e2493e8dd5e5b1bf09ccf"
+    },
+    {
+      "members": [],
+      "class_hash": "0x2002678e2601e3140c6130b54ce6e5c5731ffa2e694011b16a42ded29467d81",
+      "tag": "dojo_starter-ValidatedU256",
+      "selector": "0x1be743d149c59b8fa9f0734559dd70913d54211e07b8e54053cbbd8876b156c"
+    },
+    {
+      "members": [],
+      "class_hash": "0x4c633905b2c8116b4e421033801b67856b4a56f30257b80dd83556885c08d5b",
+      "tag": "dojo_starter-ValidatedU32",
+      "selector": "0x3b01e0a69ae770714ab8a6f5c5078aaeb0eb43546e6b9f6f2ccfce0fd8a09d2"
+    },
+    {
+      "members": [],
+      "class_hash": "0xf50ff4b7957692cc610e190d2b947e5a011ce662e9642b0a56a9b4e7a07dab",
+      "tag": "dojo_starter-ValidatedU64",
+      "selector": "0x2d02c34308169a6896db98ba19f0e60e825c1b71e791490c951a5d1ceca1493"
+    },
+    {
+      "members": [],
+      "class_hash": "0x632c67e998286748ab1ca9cde6746d7a5e9afd4df88fc9f0d48e9f1c005a474",
+      "tag": "dojo_starter-ValidatedU8",
+      "selector": "0x38b6caf9495fca73d3d9ed7fd512d1b3f06d3efa2f8d3571216f64324754daf"
     }
   ],
   "external_contracts": []
