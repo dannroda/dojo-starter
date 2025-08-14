@@ -6,8 +6,10 @@ use starknet::{ClassHash, EthAddress, ContractAddress};
 pub trait IActions<T> {
     fn reset_spawn(ref self: T);
     fn spawn(ref self: T);
-    fn move(ref self: T, direction: Direction, magnitude: u32);
-    fn move_to(ref self: T, vec: Vec2Signed);
+    fn move(ref self: T, direction: Direction, magnitude: Option<u32>);
+    fn move_signed(ref self: T, direction: Direction, magnitude: Option<u32>);
+    fn move_to(ref self: T, vec: Vec2);
+    fn move_to_signed(ref self: T, vec: Vec2Signed);
     fn validate(
         ref self: T,
         val_i8: i8,
@@ -222,13 +224,9 @@ pub mod actions {
 
             // Get the address of the current caller, possibly the player's address.
             let player = get_caller_address();
-            // Retrieve the player's current position from the world.
-            //let position: Position = world.read_model(player);
 
-            // Update the world state with the new data.
-
-            // 1. Move the player's position to 0 in both the x and y direction.
-            let new_position = PositionSigned { player, vec: Vec2Signed { x: 0, y: 0 } };
+            // 1. Move the player's position to 0 in both the x and y direction (unsigned).
+            let new_position = Position { player, vec: Vec2 { x: 0, y: 0 } };
 
             // Write the new position to the world.
             world.write_model(@new_position);
@@ -249,13 +247,11 @@ pub mod actions {
             // Get the address of the current caller, possibly the player's address.
             let player = get_caller_address();
             // Retrieve the player's current position from the world.
-            let position: PositionSigned = world.read_model(player);
+            let position: Position = world.read_model(player);
 
-            // Update the world state with the new data.
-
-            // 1. Move the player's position to position (10, 10).
-            let new_position = PositionSigned {
-                player, vec: Vec2Signed { x: position.vec.x + 10, y: position.vec.y + 10 },
+            // 1. Move the player's position to position (10, 10) using unsigned Vec2.
+            let new_position = Position {
+                player, vec: Vec2 { x: position.vec.x + 10, y: position.vec.y + 10 },
             };
 
             // Write the new position to the world.
@@ -271,7 +267,7 @@ pub mod actions {
         }
 
         // Implementation of the move function for the ContractState struct.
-        fn move(ref self: ContractState, direction: Direction, magnitude: u32) {
+        fn move(ref self: ContractState, direction: Direction, magnitude: Option<u32>) {
             // Get the address of the current caller, possibly the player's address.
 
             let mut world = self.world_default();
@@ -279,12 +275,8 @@ pub mod actions {
             let player = get_caller_address();
 
             // Retrieve the player's current position and moves data from the world.
-            let position: PositionSigned = world.read_model(player);
+            let position: Position = world.read_model(player);
             let mut moves: Moves = world.read_model(player);
-            // if player hasn't spawn, read returns model default values. This leads to sub overflow
-            // afterwards.
-            // Plus it's generally considered as a good pratice to fast-return on matching
-            // conditions.
             if !moves.can_move {
                 return;
             }
@@ -296,13 +288,11 @@ pub mod actions {
             moves.last_direction = Option::Some(direction);
 
             // Calculate the player's next position based on the provided direction and magnitude.
-            // Use magnitude directly since it's now a u32 instead of Option<u32>
-            let actual_magnitude = if magnitude == 0 {
-                1
-            } else {
-                magnitude
+            let actual_magnitude = match magnitude {
+                Option::Some(m) => { if m == 0 { 1 } else { m } },
+                Option::None(()) => 1,
             };
-            let next = next_position_signed(position, moves.last_direction, actual_magnitude);
+            let next = next_position(position, moves.last_direction, actual_magnitude);
 
             // Write the new position to the world.
             world.write_model(@next);
@@ -314,13 +304,32 @@ pub mod actions {
             world.emit_event(@Moved { player, direction });
         }
 
+        // Signed equivalent of move
+        fn move_signed(ref self: ContractState, direction: Direction, magnitude: Option<u32>) {
+            let mut world = self.world_default();
+            let player = get_caller_address();
+            let position: PositionSigned = world.read_model(player);
+            let mut moves: Moves = world.read_model(player);
+            if !moves.can_move { return; }
+            moves.remaining -= 1;
+            moves.last_direction = Option::Some(direction);
+            let actual_magnitude = match magnitude {
+                Option::Some(m) => { if m == 0 { 1 } else { m } },
+                Option::None(()) => 1,
+            };
+            let next = next_position_signed(position, moves.last_direction, actual_magnitude);
+            world.write_model(@next);
+            world.write_model(@moves);
+            world.emit_event(@Moved { player, direction });
+        }
+
         // Implementation of the move_to function for the ContractState struct.
-        fn move_to(ref self: ContractState, vec: Vec2Signed) {
+        fn move_to(ref self: ContractState, vec: Vec2) {
             let mut world = self.world_default();
 
             let player = get_caller_address();
 
-            let new_position = PositionSigned { player, vec };
+            let new_position = Position { player, vec };
             let mut moves: Moves = world.read_model(player);
 
             world.write_model(@new_position);
@@ -328,6 +337,17 @@ pub mod actions {
                 player, remaining: moves.remaining, last_direction: Option::None, can_move: moves.can_move,
             };
 
+            world.write_model(@new_moves);
+        }
+
+        // Signed equivalent of move_to
+        fn move_to_signed(ref self: ContractState, vec: Vec2Signed) {
+            let mut world = self.world_default();
+            let player = get_caller_address();
+            let new_position = PositionSigned { player, vec };
+            let mut moves: Moves = world.read_model(player);
+            world.write_model(@new_position);
+            let new_moves = Moves { player, remaining: moves.remaining, last_direction: Option::None, can_move: moves.can_move };
             world.write_model(@new_moves);
         }
 

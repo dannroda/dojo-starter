@@ -85,7 +85,7 @@ mod tests {
             initial_position.vec.x == 10 && initial_position.vec.y == 10, 'wrong initial position',
         );
 
-        actions_system.move(Direction::Right(()).into(), 1);
+        actions_system.move(Direction::Right(()).into(), Option::Some(1));
 
         let moves: Moves = world.read_model(caller);
         let right_dir_felt: felt252 = Direction::Right(()).into();
@@ -116,7 +116,7 @@ mod tests {
 
         // Test with magnitude 3
         let magnitude = 3;
-        actions_system.move(Direction::Right(()).into(), magnitude);
+        actions_system.move(Direction::Right(()).into(), Option::Some(magnitude));
 
         let moves: Moves = world.read_model(caller);
         let right_dir_felt: felt252 = Direction::Right(()).into();
@@ -130,7 +130,7 @@ mod tests {
 
         // Test with a different direction and magnitude
         let magnitude2 = 5;
-        actions_system.move(Direction::Down(()).into(), magnitude2);
+        actions_system.move(Direction::Down(()).into(), Option::Some(magnitude2));
 
         let moves2: Moves = world.read_model(caller);
         let down_dir_felt: felt252 = Direction::Down(()).into();
@@ -159,7 +159,7 @@ mod tests {
         let initial_position: Position = world.read_model(caller);
 
         // Test with magnitude 0 (should default to 1)
-        actions_system.move(Direction::Right(()).into(), 0);
+        actions_system.move(Direction::Right(()).into(), Option::Some(0));
 
         let new_position: Position = world.read_model(caller);
         // Since magnitude 0 should default to 1, we expect position.x to increase by 1
@@ -183,7 +183,7 @@ mod tests {
         let initial_position: Position = world.read_model(caller);
 
         // Test with null magnitude (now using default value 1)
-        actions_system.move(Direction::Right(()).into(), 1);
+        actions_system.move(Direction::Right(()).into(), Option::None(()));
 
         let new_position: Position = world.read_model(caller);
         // Since null magnitude should default to 1, we expect position.x to increase by 1
@@ -213,11 +213,11 @@ mod tests {
         );
 
         // Move to position (25, 30)
-        let target_position = Vec2Signed { x: 25, y: 30 };
+        let target_position = Vec2 { x: 25, y: 30 };
         actions_system.move_to(target_position);
 
         // Check that the player's position has been updated
-        let new_position: PositionSigned = world.read_model(caller);
+        let new_position: Position = world.read_model(caller);
         assert(new_position.vec.x == target_position.x, 'position x is wrong');
         assert(new_position.vec.y == target_position.y, 'position y is wrong');
 
@@ -226,11 +226,11 @@ mod tests {
         assert(moves.remaining == initial_moves.remaining, 'moves should not change');
 
         // Test moving to another position
-        let target_position2 = Vec2Signed { x: 15, y: 40 };
+        let target_position2 = Vec2 { x: 15, y: 40 };
         actions_system.move_to(target_position2);
 
         // Check that the player's position has been updated
-        let final_position: PositionSigned = world.read_model(caller);
+        let final_position: Position = world.read_model(caller);
         assert(final_position.vec.x == target_position2.x, 'position x is wrong');
         assert(final_position.vec.y == target_position2.y, 'position y is wrong');
 
