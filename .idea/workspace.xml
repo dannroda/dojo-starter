@@ -6,7 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="81d2394d-b348-492c-afba-f58af4f0c731" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dojo_dev.toml" beforeDir="false" afterPath="$PROJECT_DIR$/dojo_dev.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/manifest_dev.json" beforeDir="false" afterPath="$PROJECT_DIR$/manifest_dev.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/slot_torii_config.toml" beforeDir="false" afterPath="$PROJECT_DIR$/slot_torii_config.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/systems/actions.cairo" beforeDir="false" afterPath="$PROJECT_DIR$/src/systems/actions.cairo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tests/test_world.cairo" beforeDir="false" afterPath="$PROJECT_DIR$/src/tests/test_world.cairo" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +96,10 @@
       <workItem from="1753718320894" duration="184000" />
       <workItem from="1754930792440" duration="70000" />
       <workItem from="1754931031023" duration="1903000" />
-      <workItem from="1754932954680" duration="85000" />
+      <workItem from="1754932954680" duration="1145000" />
+      <workItem from="1755024819913" duration="3795000" />
+      <workItem from="1755206605713" duration="868000" />
+      <workItem from="1755209652582" duration="1619000" />
     </task>
     <servers />
   </component>
