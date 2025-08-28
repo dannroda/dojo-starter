@@ -46,6 +46,7 @@ pub trait IActions<T> {
     fn validate_contract_address(ref self: T, val: ContractAddress);
     fn validate_eth_address(ref self: T, val: EthAddress);
     fn validate_vec3(ref self: T, val: Vec3);
+    fn validate_fp_40(ref self: T, val: i128);
 }
 
 // dojo decorator
@@ -57,6 +58,7 @@ pub mod actions {
     use dojo_starter::models::{Moves, Vec2, Vec2Signed, Vec3};
     use starknet::{ContractAddress, get_caller_address, ClassHash, EthAddress};
     use super::{Direction, IActions, Position, PositionSigned, next_position, next_position_signed};
+    use core::num::traits::Pow;
 
     #[derive(Copy, Drop, Serde)]
     #[dojo::event]
@@ -223,6 +225,14 @@ pub mod actions {
         #[key]
         pub player: ContractAddress,
         pub val: Vec3,
+    }
+
+    #[derive(Copy, Drop, Serde)]
+    #[dojo::event]
+    pub struct ValidatedFP40 {
+        #[key]
+        pub player: ContractAddress,
+        pub val: i128,
     }
 
 
@@ -541,6 +551,22 @@ pub mod actions {
             println!("DEBUG: VALIDATE Vec3: x={}, y={}, z={}", val.x, val.y, val.z);
             world.emit_event(@ValidatedVec3 { player, val });
         }
+
+        fn validate_fp_40(ref self: ContractState, val: i128) {
+
+            let mut world = self.world_default();
+            const bits: u8 = 40;
+            let player = get_caller_address();
+
+            let pi_fp40: i128 = 3_454_217_652_357; // pi * 2^40
+
+            let mut ret = val * pi_fp40;
+            ret = ret / 2_i128.pow(bits.into());
+            println!("DEBUG: VALIDATE fp_40: in: {}, out: {}", val, ret);
+
+            world.emit_event(@ValidatedFP40 { player, val: ret });
+        }
+
     }
 
     #[generate_trait]
