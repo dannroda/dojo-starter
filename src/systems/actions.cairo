@@ -1,4 +1,4 @@
-use dojo_starter::models::{Direction, Position, PositionSigned, Vec2, Vec2Signed, U32IntoI32};
+use dojo_starter::models::{Direction, Position, PositionSigned, Vec2, Vec2Signed, Vec3, U32IntoI32};
 use starknet::{ClassHash, EthAddress, ContractAddress};
 
 // define the interface
@@ -45,14 +45,16 @@ pub trait IActions<T> {
     fn validate_class_hash(ref self: T, val: ClassHash);
     fn validate_contract_address(ref self: T, val: ContractAddress);
     fn validate_eth_address(ref self: T, val: EthAddress);
+    fn validate_vec3(ref self: T, val: Vec3);
 }
 
 // dojo decorator
 #[dojo::contract]
 pub mod actions {
+    //use core::debug::PrintTrait;
     use dojo::event::EventStorage;
     use dojo::model::ModelStorage;
-    use dojo_starter::models::{Moves, Vec2, Vec2Signed};
+    use dojo_starter::models::{Moves, Vec2, Vec2Signed, Vec3};
     use starknet::{ContractAddress, get_caller_address, ClassHash, EthAddress};
     use super::{Direction, IActions, Position, PositionSigned, next_position, next_position_signed};
 
@@ -215,6 +217,14 @@ pub mod actions {
         pub val: EthAddress,
     }
 
+    #[derive(Copy, Drop, Serde)]
+    #[dojo::event]
+    pub struct ValidatedVec3 {
+        #[key]
+        pub player: ContractAddress,
+        pub val: Vec3,
+    }
+
 
     #[abi(embed_v0)]
     impl ActionsImpl of IActions<ContractState> {
@@ -372,6 +382,24 @@ pub mod actions {
         ) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("--- DEBUG: VALIDATE ---");
+            println!("i8: {}", val_i8);
+            println!("i16: {}", val_i16);
+            println!("i32: {}", val_i32);
+            println!("i64: {}", val_i64);
+            println!("i128: {}", val_i128);
+            println!("u8: {}", val_u8);
+            println!("u16: {}", val_u16);
+            println!("u32: {}", val_u32);
+            println!("u64: {}", val_u64);
+            println!("u128: {}", val_u128);
+            println!("u256: {}", val_u256);
+            println!("bool: {}", val_bool);
+            println!("felt252: {}", val_felt252);
+            println!("class_hash: {:?}", val_class_hash);
+            println!("contract_address: {:?}", val_contract_address);
+            println!("eth_address: {:?}", val_eth_address);
+            println!("-----------------------");
             world.emit_event(
                 @Validated {
                     player,
@@ -398,97 +426,120 @@ pub mod actions {
         fn validate_i8(ref self: ContractState, val: i8) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE i8 = {}", val);
             world.emit_event(@ValidatedI8 { player, val });
         }
 
         fn validate_i16(ref self: ContractState, val: i16) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE i16 = {}", val);
             world.emit_event(@ValidatedI16 { player, val });
         }
 
         fn validate_i32(ref self: ContractState, val: i32) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE i32 = {}", val);
             world.emit_event(@ValidatedI32 { player, val });
         }
 
         fn validate_i64(ref self: ContractState, val: i64) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE i64 = {}", val);
             world.emit_event(@ValidatedI64 { player, val });
         }
 
         fn validate_i128(ref self: ContractState, val: i128) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE i128 = {}", val);
             world.emit_event(@ValidatedI128 { player, val });
         }
 
         fn validate_u8(ref self: ContractState, val: u8) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE u8 = {}", val);
             world.emit_event(@ValidatedU8 { player, val });
         }
 
         fn validate_u16(ref self: ContractState, val: u16) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE u16 = {}", val);
             world.emit_event(@ValidatedU16 { player, val });
         }
 
         fn validate_u32(ref self: ContractState, val: u32) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE u32 = {}", val);
             world.emit_event(@ValidatedU32 { player, val });
         }
 
         fn validate_u64(ref self: ContractState, val: u64) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE u64 = {}", val);
             world.emit_event(@ValidatedU64 { player, val });
         }
 
         fn validate_u128(ref self: ContractState, val: u128) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE u128 = {}", val);
             world.emit_event(@ValidatedU128 { player, val });
         }
 
         fn validate_u256(ref self: ContractState, val: u256) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE u256 = {}", val);
             world.emit_event(@ValidatedU256 { player, val });
         }
 
         fn validate_bool(ref self: ContractState, val: bool) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE bool = {}", val);
             world.emit_event(@ValidatedBool { player, val });
         }
 
         fn validate_felt252(ref self: ContractState, val: felt252) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE felt252 = {}", val);
             world.emit_event(@ValidatedFelt252 { player, val });
         }
 
         fn validate_class_hash(ref self: ContractState, val: ClassHash) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE ClassHash = {:?}", val);
             world.emit_event(@ValidatedClassHash { player, val });
         }
 
         fn validate_contract_address(ref self: ContractState, val: ContractAddress) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE ContractAddress = {:?}", val);
             world.emit_event(@ValidatedContractAddress { player, val });
         }
 
         fn validate_eth_address(ref self: ContractState, val: EthAddress) {
             let mut world = self.world_default();
             let player = get_caller_address();
+            println!("DEBUG: VALIDATE EthAddress = {:?}", val);
             world.emit_event(@ValidatedEthAddress { player, val });
+        }
+
+        fn validate_vec3(ref self: ContractState, val: Vec3) {
+            let mut world = self.world_default();
+            let player = get_caller_address();
+            println!("DEBUG: VALIDATE Vec3: x={}, y={}, z={}", val.x, val.y, val.z);
+            world.emit_event(@ValidatedVec3 { player, val });
         }
     }
 

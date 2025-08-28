@@ -1328,8 +1328,8 @@
   },
   "contracts": [
     {
-      "address": "0x38c3535090be3807d95354db3ae8dc0ceb19a0240739a3338cbc0d6c8ee47b4",
-      "class_hash": "0x6f44c0945b60215c4d1372b0f3d94a6b166cac5616b059378f636578510c8b7",
+      "address": "0x406949a238323d32875589b1881dbc549017a75f72eaa731fc1237a9e69c10b",
+      "class_hash": "0x2c287ae81bea571b9bbae2fa6b6d0fe13ccc76319cc24ae75f5690084e313bc",
       "abi": [
         {
           "type": "impl",
@@ -1485,6 +1485,24 @@
             {
               "name": "address",
               "type": "core::felt252"
+            }
+          ]
+        },
+        {
+          "type": "struct",
+          "name": "dojo_starter::models::Vec3",
+          "members": [
+            {
+              "name": "x",
+              "type": "core::integer::i128"
+            },
+            {
+              "name": "y",
+              "type": "core::integer::i128"
+            },
+            {
+              "name": "z",
+              "type": "core::integer::i128"
             }
           ]
         },
@@ -1825,6 +1843,18 @@
               ],
               "outputs": [],
               "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_vec3",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "dojo_starter::models::Vec3"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
             }
           ]
         },
@@ -1970,6 +2000,7 @@
         "validate_class_hash",
         "validate_contract_address",
         "validate_eth_address",
+        "validate_vec3",
         "upgrade"
       ]
     }
@@ -2115,6 +2146,12 @@
       "class_hash": "0x632c67e998286748ab1ca9cde6746d7a5e9afd4df88fc9f0d48e9f1c005a474",
       "tag": "dojo_starter-ValidatedU8",
       "selector": "0x38b6caf9495fca73d3d9ed7fd512d1b3f06d3efa2f8d3571216f64324754daf"
+    },
+    {
+      "members": [],
+      "class_hash": "0x44c0960c3bc2ab65eb8d7884c9db2049929f25a844379ebd215dce515151eb7",
+      "tag": "dojo_starter-ValidatedVec3",
+      "selector": "0x301cf1940eee7c71ada6f215f89fa56f119db7556afc3f5b97815388ef2f0be"
     }
   ],
   "external_contracts": []

@@ -56,6 +56,13 @@ pub struct Vec2Signed {
     pub y: i32,
 }
 
+#[derive(Copy, Drop, Serde, IntrospectPacked, Debug)]
+pub struct Vec3 {
+    pub x: i128,
+    pub y: i128,
+    pub z: i128,
+}
+
 #[derive(Copy, Drop, Serde, Debug)]
 #[dojo::model]
 pub struct PositionSigned {
