@@ -1328,8 +1328,8 @@
   },
   "contracts": [
     {
-      "address": "0x406949a238323d32875589b1881dbc549017a75f72eaa731fc1237a9e69c10b",
-      "class_hash": "0x2c287ae81bea571b9bbae2fa6b6d0fe13ccc76319cc24ae75f5690084e313bc",
+      "address": "0x509fe72ac9512081b7dcbfc673b18ea3a323b164e45008fa774376031f88521",
+      "class_hash": "0x584b8219b1b5438466c37039bfa3ddec7ae44a39c012b7b6f1805d4bed7fd53",
       "abi": [
         {
           "type": "impl",
@@ -1855,6 +1855,18 @@
               ],
               "outputs": [],
               "state_mutability": "external"
+            },
+            {
+              "type": "function",
+              "name": "validate_fp_40",
+              "inputs": [
+                {
+                  "name": "val",
+                  "type": "core::integer::i128"
+                }
+              ],
+              "outputs": [],
+              "state_mutability": "external"
             }
           ]
         },
@@ -2001,6 +2013,7 @@
         "validate_contract_address",
         "validate_eth_address",
         "validate_vec3",
+        "validate_fp_40",
         "upgrade"
       ]
     }
@@ -2074,6 +2087,12 @@
       "class_hash": "0x515e0be2bfd68a984b65832e8417e331d54de5a8156aba9bce616cc3e595f87",
       "tag": "dojo_starter-ValidatedEthAddress",
       "selector": "0x14ece259535dda5396be4eb8587d93b1fecc8688c8cc1ac0a60be47d63b038"
+    },
+    {
+      "members": [],
+      "class_hash": "0x2ef4d38e1ebd439f76f43c16befb1afe4b772421dc2679a0d33e7c7479fef34",
+      "tag": "dojo_starter-ValidatedFP40",
+      "selector": "0x57927e367faa169cd83c93b4b47b016320a081b5a8be5592691fd7f1cdb91e7"
     },
     {
       "members": [],

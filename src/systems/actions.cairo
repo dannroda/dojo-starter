@@ -253,7 +253,7 @@ pub mod actions {
 
             // 2. Set the player's remaining moves to 100.
             let moves = Moves {
-                player, remaining: 100, last_direction: Option::None, can_move: true,
+                player, remaining: 100, last_direction: Direction::None, can_move: true,
             };
 
             // Write the new moves to the world.
@@ -279,7 +279,7 @@ pub mod actions {
 
             // 2. Set the player's remaining moves to 100.
             let moves = Moves {
-                player, remaining: 100, last_direction: Option::None, can_move: true,
+                player, remaining: 100, last_direction: Direction::None, can_move: true,
             };
 
             // Write the new moves to the world.
@@ -305,7 +305,7 @@ pub mod actions {
             moves.remaining -= 1;
 
             // Update the last direction the player moved in.
-            moves.last_direction = Option::Some(direction);
+            moves.last_direction = direction;
 
             // Calculate the player's next position based on the provided direction and magnitude.
             let actual_magnitude = match magnitude {
@@ -332,7 +332,7 @@ pub mod actions {
             let mut moves: Moves = world.read_model(player);
             if !moves.can_move { return; }
             moves.remaining -= 1;
-            moves.last_direction = Option::Some(direction);
+            moves.last_direction = direction;
             let actual_magnitude = match magnitude {
                 Option::Some(m) => { if m == 0 { 1 } else { m } },
                 Option::None(()) => 1,
@@ -354,7 +354,7 @@ pub mod actions {
 
             world.write_model(@new_position);
             let new_moves = Moves {
-                player, remaining: moves.remaining, last_direction: Option::None, can_move: moves.can_move,
+                player, remaining: moves.remaining, last_direction: Direction::None, can_move: moves.can_move,
             };
 
             world.write_model(@new_moves);
@@ -367,7 +367,7 @@ pub mod actions {
             let new_position = PositionSigned { player, vec };
             let mut moves: Moves = world.read_model(player);
             world.write_model(@new_position);
-            let new_moves = Moves { player, remaining: moves.remaining, last_direction: Option::None, can_move: moves.can_move };
+            let new_moves = Moves { player, remaining: moves.remaining, last_direction: Direction::None, can_move: moves.can_move };
             world.write_model(@new_moves);
         }
 
@@ -580,34 +580,30 @@ pub mod actions {
 }
 
 // Define function like this:
-fn next_position(mut position: Position, direction: Option<Direction>, magnitude: u32) -> Position {
+fn next_position(mut position: Position, direction: Direction, magnitude: u32) -> Position {
     // magnitude is already handled in the move function
     match direction {
-        Option::None => { return position; },
-        Option::Some(d) => match d {
-            Direction::Left => { position.vec.x -= magnitude; },
-            Direction::Right => { position.vec.x += magnitude; },
-            Direction::Up => { position.vec.y -= magnitude; },
-            Direction::Down => { position.vec.y += magnitude; },
-        },
+        Direction::None => { return position; },
+        Direction::Left => { position.vec.x -= magnitude; },
+        Direction::Right => { position.vec.x += magnitude; },
+        Direction::Up => { position.vec.y -= magnitude; },
+        Direction::Down => { position.vec.y += magnitude; },
     }
     position
 }
 
 // Define function for signed positions:
 fn next_position_signed(
-    mut position: PositionSigned, direction: Option<Direction>, magnitude: u32
+    mut position: PositionSigned, direction: Direction, magnitude: u32
 ) -> PositionSigned {
     // magnitude is already handled in the move function
     let magnitude_i32: i32 = magnitude.into();
     match direction {
-        Option::None => { return position; },
-        Option::Some(d) => match d {
-            Direction::Left => { position.vec.x -= magnitude_i32; },
-            Direction::Right => { position.vec.x += magnitude_i32; },
-            Direction::Up => { position.vec.y -= magnitude_i32; },
-            Direction::Down => { position.vec.y += magnitude_i32; },
-        },
+        Direction::None => { return position; },
+        Direction::Left => { position.vec.x -= magnitude_i32; },
+        Direction::Right => { position.vec.x += magnitude_i32; },
+        Direction::Up => { position.vec.y -= magnitude_i32; },
+        Direction::Down => { position.vec.y += magnitude_i32; },
     }
     position
 }
