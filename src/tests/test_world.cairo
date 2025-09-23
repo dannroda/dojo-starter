@@ -1,7 +1,7 @@
 #[cfg(test)]
 mod tests {
     use dojo_cairo_test::WorldStorageTestTrait;
-    use dojo::model::{ModelStorage, ModelStorageTest};
+    use dojo::model::{ModelStorage, ModelStorageTest, world};
     use dojo::world::WorldStorageTrait;
     use dojo_cairo_test::{
         spawn_test_world, NamespaceDef, TestResource, ContractDefTrait, ContractDef,
@@ -14,11 +14,11 @@ mod tests {
         let ndef = NamespaceDef {
             namespace: "dojo_starter",
             resources: [
-                TestResource::Model(m_Position::TEST_CLASS_HASH),
-                TestResource::Model(m_PositionSigned::TEST_CLASS_HASH),
-                TestResource::Model(m_Moves::TEST_CLASS_HASH),
-                TestResource::Event(actions::e_Moved::TEST_CLASS_HASH),
-                TestResource::Contract(actions::TEST_CLASS_HASH),
+                TestResource::Model(m_Position::TEST_CLASS_HASH.into()),
+                TestResource::Model(m_PositionSigned::TEST_CLASS_HASH.into()),
+                TestResource::Model(m_Moves::TEST_CLASS_HASH.into()),
+                TestResource::Event(actions::e_Moved::TEST_CLASS_HASH.into()),
+                TestResource::Contract(actions::TEST_CLASS_HASH.into()),
             ]
                 .span(),
         };
@@ -41,7 +41,7 @@ mod tests {
         let ndef = namespace_def();
 
         // Register the resources.
-        let mut world = spawn_test_world([ndef].span());
+        let mut world = spawn_test_world(world::TEST_CLASS_HASH, [ndef].span());
 
         // Ensures permissions and initializations are synced.
         world.sync_perms_and_inits(contract_defs());
@@ -71,7 +71,7 @@ mod tests {
         let caller = starknet::contract_address_const::<0x0>();
 
         let ndef = namespace_def();
-        let mut world = spawn_test_world([ndef].span());
+        let mut world = spawn_test_world(world::TEST_CLASS_HASH, [ndef].span());
         world.sync_perms_and_inits(contract_defs());
 
         let (contract_address, _) = world.dns(@"actions").unwrap();

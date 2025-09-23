@@ -1,15 +1,21 @@
 [package]
-cairo-version = "=2.11.4"
+cairo-version = "2.12.2"
 name = "dojo_starter"
 version = "1.7.0"
 edition = "2024_07"
 
-[lib]
+[cairo]
+sierra-replace-ids = true
+
+[scripts]
+migrate = "sozo build && sozo migrate"
+spawn = "sozo execute dojo_starter-actions spawn --wait"
+move = "sozo execute dojo_starter-actions move -c 1 --wait"
 
 [dependencies]
-dojo = { git = "https://github.com/dojoengine/dojo", tag = "v1.7.0-alpha.1" }
-dojo_macros = { git = "https://github.com/dojoengine/dojo", tag = "v1.7.0-alpha.1" }
-starknet = ">=2.11.4"
+dojo = "v1.7.0"
+dojo_cairo_macros = "v1.7.0"
+starknet = "2.12.2"
 #debug = { git = "https://github.com/starkware-libs/cairo.git", tag = "v2.4.0" }
 
 [[target.starknet-contract]]
@@ -21,5 +27,5 @@ name = "dojo_starter"
 description = "dojo_starter"
 
 [dev-dependencies]
-cairo_test = "=2.11.4"
-dojo_cairo_test = { git = "https://github.com/dojoengine/dojo", tag = "v1.7.0-alpha.1" }
+cairo_test = "2.12.2"
+dojo_cairo_test = "v1.7.0"
