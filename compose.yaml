@@ -29,8 +29,9 @@ services:
         condition: service_healthy
     command: >
       /bin/sh -c '
-      curl -L https://install.dojoengine.org | bash
-      cd /app && sozo migrate --rpc-url http://katana:5050
+      . /root/.asdf/asdf.sh && \
+      cd /app && \
+      sozo migrate --rpc-url http://katana:5050
       '
 
     restart: on-failure
