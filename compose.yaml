@@ -24,15 +24,18 @@ services:
       target: dojo
     volumes:
       - ./:/app
-#    depends_on:
-#      katana:
-#        condition: service_healthy
+    depends_on:
+      katana:
+        condition: service_healthy
     command: >
-      /bin/sh -c '
-      export PATH="/root/.asdf/shims:$PATH" && cd /app 
-      '
-
-    restart: on-failure
+      /bin/sh -c 'tail -f /dev/null'
+    healthcheck:
+      test: ["CMD", "true"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # Si quieres que se reinicie si falla
+    # restart: on-failure
 
   torii:
     build:
@@ -52,7 +55,7 @@ services:
       - 9090-9092:9090-9092
     depends_on:
       sozo-migrate:
-        condition: service_completed_successfully
+        condition: service_healthy
       katana:
         condition: service_healthy
     restart: on-failure
