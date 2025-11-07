@@ -29,8 +29,8 @@ services:
         condition: service_healthy
     command: >
       /bin/sh -c '
-      export PATH="/root/.dojo/bin:$PATH" && \
-      cd /app && \
+      export PATH="/root/.dojo/bin:$PATH"
+      cd /app
       sozo migrate --rpc-url http://katana:5050
       '
 
