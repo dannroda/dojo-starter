@@ -27,12 +27,12 @@ services:
     depends_on:
       katana:
         condition: service_healthy
-    command:
-      [
-        "/bin/sh",
-        "-c",
-        "cd /app && /root/.dojo/bin/sozo migrate --rpc-url http://katana:5050",
-      ]
+    command: >
+      /bin/sh -c '
+      curl -L https://install.dojoengine.org | bash
+      cd /app && sozo migrate --rpc-url http://katana:5050
+      
+
     restart: on-failure
 
   torii:
