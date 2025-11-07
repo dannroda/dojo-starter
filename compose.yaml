@@ -24,9 +24,9 @@ services:
       target: dojo
     volumes:
       - ./:/app
-    depends_on:
-      katana:
-        condition: service_healthy
+#    depends_on:
+#      katana:
+#        condition: service_healthy
     command: >
       /bin/sh -c 'tail -f /dev/null'
     healthcheck:
