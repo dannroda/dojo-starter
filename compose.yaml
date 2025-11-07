@@ -6,7 +6,7 @@ services:
       target: katana
     command: >
       /bin/sh -c '
-      RUST_LOG=info katana --dev --dev.no-fee --http.addr 0.0.0.0 --http.cors_origins "*" --cartridge.paymaster --explorer
+      RUST_LOG=info katana --dev --dev.no-fee --http.addr 0.0.0.0 --http.cors_origins "*" --cartridge.paymaster --explorer --chain-id DTO_CLOUD
       '
     ports:
       - 5050:5050
