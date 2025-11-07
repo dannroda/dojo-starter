@@ -29,7 +29,7 @@ services:
         condition: service_healthy
     command: >
       /bin/sh -c '
-      export PATH="/root/.asdf/shims:$PATH" && cd /app && sozo migrate --rpc-url http://katana:5050
+      ls -R && export PATH="/root/.asdf/shims:$PATH" && cd /app && sozo migrate --rpc-url http://katana:5050
       '
 
     restart: on-failure
