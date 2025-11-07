@@ -1,21 +1,21 @@
 services:
-  katana:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: katana
-    command: >
-      /bin/sh -c '
-      RUST_LOG=info katana --dev --dev.no-fee --http.addr 0.0.0.0 --http.cors_origins "*" --cartridge.paymaster --explorer --chain-id DTO_CLOUD
-      '
-    ports:
-      - 5050:5050
-      - 3001:3001
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:5050"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+#  katana:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#      target: katana
+#    command: >
+#      /bin/sh -c '
+#      RUST_LOG=info katana --dev --dev.no-fee --http.addr 0.0.0.0 --http.cors_origins "*" --cartridge.paymaster --explorer --chain-id DTO_CLOUD
+#      '
+#    ports:
+#      - 27050:5050
+#      - 27001:3001
+#    healthcheck:
+#      test: ["CMD", "curl", "--fail", "http://localhost:5050"]
+#      interval: 10s
+#      timeout: 5s
+#      retries: 5
 
   sozo-migrate:
     build:
@@ -34,28 +34,27 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-    # Si quieres que se reinicie si falla
     # restart: on-failure
 
-  torii:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      target: torii
-    command: >
-      /bin/sh -c '
-      world_address=$$(cat /app/manifest_dev.json | jq -r .world.address) &&
-      RUST_LOG=libp2p=DEBUG torii -w $$world_address --http.cors_origins "*" --rpc http://katana:5050 --http.addr 0.0.0.0 --config /app/torii_dev.toml
-      '
-    volumes:
-      - ./manifest_dev.json:/app/manifest_dev.json
-      - ./torii_dev.toml:/app/torii_dev.toml
-    ports:
-      - 8080:8080
-      - 9090-9092:9090-9092
-    depends_on:
-      sozo-migrate:
-        condition: service_healthy
-      katana:
-        condition: service_healthy
-    restart: on-failure
+#  torii:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile
+#      target: torii
+#    command: >
+#      /bin/sh -c '
+#      world_address=$$(cat /app/manifest_dev.json | jq -r .world.address) &&
+#      RUST_LOG=libp2p=DEBUG torii -w $$world_address --http.cors_origins "*" --rpc http://katana:5050 --http.addr 0.0.0.0 --config /app/torii_dev.toml
+#      '
+#    volumes:
+#      - ./manifest_dev.json:/app/manifest_dev.json
+#      - ./torii_dev.toml:/app/torii_dev.toml
+#    ports:
+#      - 27080:8080
+#      - 27090-27092:9090-9092
+#    depends_on:
+#      sozo-migrate:
+#        condition: service_healthy
+#      katana:
+#        condition: service_healthy
+#    restart: on-failure
