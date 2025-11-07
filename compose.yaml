@@ -24,12 +24,12 @@ services:
       target: dojo
     volumes:
       - ./:/app
-    depends_on:
-      katana:
-        condition: service_healthy
+#    depends_on:
+#      katana:
+#        condition: service_healthy
     command: >
       /bin/sh -c '
-      export PATH="/root/.asdf/shims:$PATH" && cd /app
+      export PATH="/root/.asdf/shims:$PATH" && cd /app 
       '
 
     restart: on-failure
