@@ -1,4 +1,4 @@
-world_address="0x073c2b317136214562b608523812f369a05efe67257842a17c4985ce6d390be7"
+world_address="0x044508ff3a94c19844702f34dd64c5a933870116a42ac1105fd324335ca7b3f9"
 rpc="https://api.cartridge.gg/x/godot-demo-rookie/katana"
 [runner]
 explorer= false
